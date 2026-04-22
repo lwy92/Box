@@ -172,6 +172,9 @@ public class PlayerHelper {
             case VideoView.SCREEN_SCALE_CENTER_CROP:
                 scaleText = "裁剪";
                 break;
+            case VideoView.SCREEN_SCALE_SMALL_WINDOW:
+                scaleText = "小窗";
+                break;
         }
         return scaleText;
     }

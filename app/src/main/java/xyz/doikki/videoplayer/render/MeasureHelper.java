@@ -83,6 +83,10 @@ public class MeasureHelper {
                     height = width * mVideoHeight / mVideoWidth;
                 }
                 break;
+            case VideoView.SCREEN_SCALE_SMALL_WINDOW:
+                width = width * 3 / 4;
+                height = height * 3 / 4;
+                break;
         }
         return new int[]{width, height};
     }
