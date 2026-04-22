@@ -644,7 +644,7 @@ public class VodController extends BaseController {
                 try {
                     int scaleType = mPlayerConfig.getInt("sc");
                     scaleType++;
-                    if (scaleType > 5)
+                    if (scaleType > 6)
                         scaleType = 0;
                     mPlayerConfig.put("sc", scaleType);
                     updatePlayerCfgView();

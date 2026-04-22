@@ -63,6 +63,7 @@ public class BaseVideoView<P extends AbstractPlayer> extends FrameLayout
     public static final int SCREEN_SCALE_MATCH_PARENT = 3;
     public static final int SCREEN_SCALE_ORIGINAL = 4;
     public static final int SCREEN_SCALE_CENTER_CROP = 5;
+    public static final int SCREEN_SCALE_SMALL_WINDOW = 6;
     protected int mCurrentScreenScaleType;
 
     protected int[] mVideoSize = {0, 0};
@@ -290,7 +291,7 @@ public class BaseVideoView<P extends AbstractPlayer> extends FrameLayout
         LayoutParams params = new LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                Gravity.CENTER);
+                mCurrentScreenScaleType == SCREEN_SCALE_SMALL_WINDOW ? Gravity.START | Gravity.TOP : Gravity.CENTER);
         mPlayerContainer.addView(mRenderView.getView(), 0, params);
     }
 
@@ -942,7 +943,18 @@ public class BaseVideoView<P extends AbstractPlayer> extends FrameLayout
         mCurrentScreenScaleType = screenScaleType;
         if (mRenderView != null) {
             mRenderView.setScaleType(screenScaleType);
+            updateRenderViewGravity(screenScaleType);
         }
+    }
+
+    private void updateRenderViewGravity(int screenScaleType) {
+        if (mRenderView == null) return;
+        View renderView = mRenderView.getView();
+        ViewGroup.LayoutParams layoutParams = renderView.getLayoutParams();
+        if (!(layoutParams instanceof LayoutParams)) return;
+        LayoutParams params = (LayoutParams) layoutParams;
+        params.gravity = screenScaleType == SCREEN_SCALE_SMALL_WINDOW ? Gravity.START | Gravity.TOP : Gravity.CENTER;
+        renderView.setLayoutParams(params);
     }
 
     /**
