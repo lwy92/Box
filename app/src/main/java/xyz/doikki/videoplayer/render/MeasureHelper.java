@@ -84,8 +84,15 @@ public class MeasureHelper {
                 }
                 break;
             case VideoView.SCREEN_SCALE_SMALL_WINDOW:
-                width = width * 3 / 4;
-                height = height * 3 / 4;
+                int maxWidth = width * 3 / 4;
+                int maxHeight = height * 3 / 4;
+                if (mVideoWidth * maxHeight < maxWidth * mVideoHeight) {
+                    width = maxHeight * mVideoWidth / mVideoHeight;
+                    height = maxHeight;
+                } else {
+                    width = maxWidth;
+                    height = maxWidth * mVideoHeight / mVideoWidth;
+                }
                 break;
         }
         return new int[]{width, height};
