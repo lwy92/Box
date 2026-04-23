@@ -28,10 +28,24 @@ android {
         exclude 'META-INF/DEPENDENCIES'
     }
 
+
+    // 新增签名配置（放在defaultConfig下面）
+    signingConfigs {
+        release {
+            storeFile file("../tvbox.jks")
+            storePassword "123456"  //你刚才设置的密码
+            keyAlias "tvboxkey"
+            keyPassword "123456"
+            enableV1Signing true
+            enableV2Signing true  //TVBox安卓7+必须V2签名
+        }
+    }
+
     buildTypes {
         release {
             minifyEnabled true
-
+// 加上这行：编译release自动用签名
+            signingConfig signingConfigs.release
         }
     }
 

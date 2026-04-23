@@ -953,7 +953,7 @@ public class BaseVideoView<P extends AbstractPlayer> extends FrameLayout
         ViewGroup.LayoutParams layoutParams = renderView.getLayoutParams();
         if (!(layoutParams instanceof LayoutParams)) return;
         LayoutParams params = (LayoutParams) layoutParams;
-        params.gravity = screenScaleType == SCREEN_SCALE_SMALL_WINDOW ? Gravity.START | Gravity.TOP : Gravity.CENTER;
+        params.gravity = screenScaleType == SCREEN_SCALE_SMALL_WINDOW ? Gravity.CENTER_HORIZONTAL | Gravity.TOP : Gravity.CENTER;
         renderView.setLayoutParams(params);
     }
 
