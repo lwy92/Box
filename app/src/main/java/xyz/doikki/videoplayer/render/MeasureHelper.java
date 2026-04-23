@@ -2,6 +2,9 @@ package xyz.doikki.videoplayer.render;
 
 import android.view.View;
 
+import com.github.tvbox.osc.util.HawkConfig;
+import com.orhanobut.hawk.Hawk;
+
 import xyz.doikki.videoplayer.player.VideoView;
 
 public class MeasureHelper {
@@ -84,7 +87,10 @@ public class MeasureHelper {
                 }
                 break;
             case VideoView.SCREEN_SCALE_SMALL_WINDOW:
-                int maxHeight = height * 3 / 5;
+                int smallWindowRatio = Hawk.get(HawkConfig.SMALL_WINDOW_RATIO, 60);
+                if (smallWindowRatio < 20) smallWindowRatio = 20;
+                if (smallWindowRatio > 100) smallWindowRatio = 100;
+                int maxHeight = height * smallWindowRatio / 100;
                 width = maxHeight * mVideoWidth / mVideoHeight;
                 height = maxHeight;
 

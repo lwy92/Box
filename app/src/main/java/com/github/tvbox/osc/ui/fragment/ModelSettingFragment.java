@@ -75,6 +75,7 @@ public class ModelSettingFragment extends BaseLazyFragment {
     // Player Section
     private TextView tvShowPreviewText;
     private TextView tvScale;
+    private TextView tvSmallWindowRatio;
     private TextView tvPlay;
     private TextView tvVideoPurifyText;
 
@@ -122,6 +123,8 @@ public class ModelSettingFragment extends BaseLazyFragment {
         tvShowPreviewText.setText(Hawk.get(HawkConfig.SHOW_PREVIEW, true) ? "开启" : "关闭");
         tvScale = findViewById(R.id.tvScaleType);
         tvScale.setText(PlayerHelper.getScaleName(Hawk.get(HawkConfig.PLAY_SCALE, 0)));
+        tvSmallWindowRatio = findViewById(R.id.tvSmallWindowRatio);
+        tvSmallWindowRatio.setText(getSmallWindowRatioText(Hawk.get(HawkConfig.SMALL_WINDOW_RATIO, 60)));
         tvPlay = findViewById(R.id.tvPlay);
         tvPlay.setText(PlayerHelper.getPlayerName(Hawk.get(HawkConfig.PLAY_TYPE, 0)));
         tvVideoPurifyText = findViewById(R.id.tvVideoPurifyText);
@@ -399,6 +402,48 @@ public class ModelSettingFragment extends BaseLazyFragment {
                         return oldItem.intValue() == newItem.intValue();
                     }
                 }, players, defaultPos);
+                dialog.show();
+            }
+        });
+        findViewById(R.id.llSmallWindowRatio).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FastClickCheckUtil.check(v);
+                int defaultRatio = Hawk.get(HawkConfig.SMALL_WINDOW_RATIO, 60);
+                ArrayList<Integer> ratios = new ArrayList<>();
+                ratios.add(30);
+                ratios.add(40);
+                ratios.add(50);
+                ratios.add(60);
+                ratios.add(70);
+                ratios.add(80);
+                ratios.add(90);
+                int defaultPos = ratios.indexOf(defaultRatio);
+                if (defaultPos < 0) defaultPos = ratios.indexOf(60);
+                SelectDialog<Integer> dialog = new SelectDialog<>(mActivity);
+                dialog.setTip(getString(R.string.dia_small_window_ratio));
+                dialog.setAdapter(null, new SelectDialogAdapter.SelectDialogInterface<Integer>() {
+                    @Override
+                    public void click(Integer value, int pos) {
+                        Hawk.put(HawkConfig.SMALL_WINDOW_RATIO, value);
+                        tvSmallWindowRatio.setText(getSmallWindowRatioText(value));
+                    }
+
+                    @Override
+                    public String getDisplay(Integer val) {
+                        return getSmallWindowRatioText(val);
+                    }
+                }, new DiffUtil.ItemCallback<Integer>() {
+                    @Override
+                    public boolean areItemsTheSame(@NonNull @NotNull Integer oldItem, @NonNull @NotNull Integer newItem) {
+                        return oldItem.intValue() == newItem.intValue();
+                    }
+
+                    @Override
+                    public boolean areContentsTheSame(@NonNull @NotNull Integer oldItem, @NonNull @NotNull Integer newItem) {
+                        return oldItem.intValue() == newItem.intValue();
+                    }
+                }, ratios, defaultPos);
                 dialog.show();
             }
         });
@@ -869,6 +914,10 @@ public class ModelSettingFragment extends BaseLazyFragment {
         } else {
             return "樱花";
         }
+    }
+
+    String getSmallWindowRatioText(int ratio) {
+        return ratio + "%";
     }
 
     void reloadActivity() {

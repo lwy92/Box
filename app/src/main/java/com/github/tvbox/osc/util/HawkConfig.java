@@ -36,6 +36,7 @@ public class HawkConfig {
     public static final String PLAY_TYPE = "play_type";     //0 系统 1 ijk 2 exo 10 MXPlayer
     public static final String PLAY_RENDER = "play_render"; //0 texture 2
     public static final String PLAY_SCALE = "play_scale";   //
+    public static final String SMALL_WINDOW_RATIO = "small_window_ratio"; // 小窗高度百分比
     public static final String PLAY_TIME_STEP = "play_time_step";
     public static final String PIC_IN_PIC = "pic_in_pic";   // true = on, false = off
     public static final String VIDEO_PURIFY = "video_purify";
