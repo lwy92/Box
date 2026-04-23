@@ -65,6 +65,7 @@
     <string name="mn_ratio">Screen Ratio</string>
     <string name="mn_bgplay">Bgplay</string>
     <string name="mn_preview">Preview Window</string>
+    <string name="mn_small_window_ratio">Small Window Size</string>
     <string name="mn_webview">WebView</string>
     <string name="mn_render">Render</string>
     <string name="mn_backup">Backup/Restore</string>
@@ -89,6 +90,7 @@
     <string name="dia_decode">Select IJK Decoder</string>
     <string name="dia_search">Select Search Mode</string>
     <string name="dia_ratio">Select Screen Ratio</string>
+    <string name="dia_small_window_ratio">Select Small Window Size</string>
     <string name="dia_render">Select Render Mode</string>
     <string name="dia_bkres">Backup / Restore</string>
     <string name="dia_bkpkg">Select Backup Package</string>

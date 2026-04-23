@@ -65,6 +65,7 @@
     <string name="mn_ratio">画面缩放</string>
     <string name="mn_bgplay">后台</string>
     <string name="mn_preview">窗口预览</string>
+    <string name="mn_small_window_ratio">小窗大小</string>
     <string name="mn_webview">嗅探Webview</string>
     <string name="mn_render">渲染方式</string>
     <string name="mn_backup">数据备份还原</string>
@@ -89,6 +90,7 @@
     <string name="dia_decode">请选择IJK解码</string>
     <string name="dia_search">请选择搜索视图</string>
     <string name="dia_ratio">请选择默认画面缩放</string>
+    <string name="dia_small_window_ratio">请选择小窗大小百分比</string>
     <string name="dia_render">请选择默认渲染方式</string>
     <string name="dia_bkres">数据备份还原</string>
     <string name="dia_bkpkg">点击下方数据还原</string>
